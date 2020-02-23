@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!--#if(AddSwagger)-->
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="5.0.0" />

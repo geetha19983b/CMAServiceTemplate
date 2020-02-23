@@ -8,6 +8,7 @@ Dotnet new -u “give full path of the parent folder where the template folder i
 
 
 dotnet new cmawebapi --ProjectName ClaimDService --AddPromethus true --AddSerilog false --AddTestProject false --AddPolly true --AddHealthCheck true --AddSwagger true
+--AddSql true --AddMongo false
 to package
 create a folder eg Templates in that put webapi folder with the contents and keep nuspec file and nuget package in the template folder
 Add a folder WebAPI and copy all the contents of the web template project
@@ -19,3 +20,7 @@ Go to the folder containing nupkg file
 dotnet new -i IMPWEB.Templates.1.0.1.nupkg
 To unistall the template 
 dotnet new -u IMPWEB.Templates
+
+
+AddSql
+AddMongo

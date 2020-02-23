@@ -38,6 +38,13 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 //#endif
+
+//#if(AddMongo)
+using Microsoft.Extensions.Options;
+//#endif
+//#if(AddSql)
+using Microsoft.EntityFrameworkCore;
+//#endif
 namespace CMAService.API
 {
     public class Startup
@@ -80,8 +87,33 @@ namespace CMAService.API
             //#endif
 
             services.AddScoped<IBusinessAccess, BusinessAccess>();
+            //#if (!AddSql && !AddMongo)
             services.AddScoped<IDataAccess, DataAccess>();
+            //#endif
 
+            //#if(AddSql)
+            services.AddScoped<IDataAccess, SqlDataAccess>();
+
+            services.AddDbContext<AuthorContext>(options =>
+            {
+                options.UseSqlServer(
+                   Configuration.GetConnectionString("SqlDatabase"));
+            });
+
+            //#endif
+
+            //#if(AddMongo)
+            // requires using Microsoft.Extensions.Options
+            services.Configure<MongoDbSettings>(
+               Configuration.GetSection(nameof(MongoDbSettings)));
+
+            services.AddSingleton<IMongoDbSettings>(sp =>
+                sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+
+            services.AddScoped<IDataAccess, MongoDataAccess>();
+
+
+            //#endif
             //#if (AddPolly)
             IAsyncPolicy<HttpResponseMessage> httpWaitAndRetryPolicy = GetWaitAndRetryPolicy();
             IAsyncPolicy<HttpResponseMessage> circuitBreakerPolicy = GetCircuitBreakerPolicy();

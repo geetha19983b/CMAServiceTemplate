@@ -20,27 +20,37 @@
       "datatype": "bool",
       "defaultValue": "false"
     },
-	 "AddSerilog": {
+    "AddSerilog": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
     },
-	"AddSwagger": {
+    "AddSwagger": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
     },
-	"AddHealthCheck": {
+    "AddHealthCheck": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
     },
-	 "AddTestProject": {
+    "AddTestProject": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
     },
-	 "AddPolly": {
+    "AddPolly": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "AddSql": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "AddMongo": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
@@ -49,14 +59,41 @@
    "sources": [
         {
             "modifiers": [
-                {
-                    "condition": "(!AddTestProject)",
-                    "exclude": [
-                        "CMAService.Tests/**"
-						
-                       
-                    ]
-                }
+              {
+                "condition": "(!AddTestProject)",
+                "exclude": [
+                  "CMAService.Tests/**"
+                ]
+
+              },
+              {
+                "condition": "(!AddSql)",
+                "exclude": [
+                  "CMAService.Repository/DBContext/AuthorContext.cs",
+                  "CMAService.Repository/SqlDataAccess.cs"
+
+                ]
+
+              },
+              {
+                "condition": "(!AddMongo)",
+                "exclude": [
+                  "CMAService.Repository/DBContext/MongoDbSettings.cs",
+                  "CMAService.Repository/MongoDataAccess.cs"
+                ]
+
+              },
+              {
+                "condition": "(!AddSql && !AddMongo)",
+                "exclude": [
+                  "CMAService.API/Controllers/AuthorController.cs",
+                  "CMAService.Repository/Entities/Author.cs"
+
+
+                ]
+
+              }
+
             ]
         }
     ],
