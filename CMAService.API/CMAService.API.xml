@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CMAService.API</name>
+    </assembly>
+    <members>
+        <member name="M:CMAService.API.Controllers.WeatherForecastController.GetValues">
+            <summary>
+            Get all values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CMAService.API.Controllers.WeatherForecastController.Get">
+            <summary>
+            Get weather forecast details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CMAService.API.Controllers.WeatherForecastController.Get(System.Int32)">
+            <summary>
+            Polly retry test end point
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

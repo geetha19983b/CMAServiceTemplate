@@ -1,0 +1,65 @@
+{
+  "author": "CMA",
+  "classifications": [ "Web" ],
+  "name": "CMA Starter Web API",
+  "identity": "CMAWebapi", // Unique name for this template
+  "shortName": "cmawebapi", // Short name that can be used on the cli
+  "tags": {
+    "language": "C#" // Specify that this template is in C#.
+  },
+  "symbols": {
+
+    "ProjectName": {
+      "type": "parameter",
+      "replaces": "CMAService",
+      "FileRename": "CMAService",
+      "isRequired": true
+    },
+    "AddPromethus": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+	 "AddSerilog": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+	"AddSwagger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+	"AddHealthCheck": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+	 "AddTestProject": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+	 "AddPolly": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+   "sources": [
+        {
+            "modifiers": [
+                {
+                    "condition": "(!AddTestProject)",
+                    "exclude": [
+                        "CMAService.Tests/**"
+						
+                       
+                    ]
+                }
+            ]
+        }
+    ],
+  "sourceName": "CMA.StarterWeb", // Will replace the string 'CMA.StarterWeb' with the value provided via -n.
+  "preferNameDirectory": "true"
+}
