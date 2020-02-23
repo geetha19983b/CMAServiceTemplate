@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CMAService.API.Controllers
 {
+    //sample controller to check the db
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorController : ControllerBase
@@ -19,6 +20,8 @@ namespace CMAService.API.Controllers
             _businessObj = businessobj ??
                 throw new ArgumentNullException(nameof(businessobj));
         }
+
+         #if (AddSql || AddMongo)
 
         [HttpGet()]
 
@@ -90,6 +93,7 @@ namespace CMAService.API.Controllers
                 new { authorId = author.Id },
                 author);
         }
+        #endif
 
     }
 }

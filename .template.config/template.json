@@ -54,6 +54,11 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+    "AddKafka": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
    "sources": [
@@ -88,8 +93,14 @@
                 "exclude": [
                   "CMAService.API/Controllers/AuthorController.cs",
                   "CMAService.Repository/Entities/Author.cs"
+                ]
 
-
+              },
+              {
+                "condition": "(!AddKafka)",
+                "exclude": [
+                  "CMAService.API/Kafka_Infra/**",
+                  "CMAService.API/Controllers/OrderController.cs"
                 ]
 
               }

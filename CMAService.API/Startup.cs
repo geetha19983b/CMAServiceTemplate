@@ -21,7 +21,6 @@ using Microsoft.OpenApi.Models;
 //#if (AddSerilog)
 using Serilog;
 //#endif
-
 //#if (AddPolly)
 using Polly;
 using Polly.Extensions.Http;
@@ -36,14 +35,15 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-
 //#endif
-
 //#if(AddMongo)
 using Microsoft.Extensions.Options;
 //#endif
 //#if(AddSql)
 using Microsoft.EntityFrameworkCore;
+//#endif
+//#if(AddKafka)
+using Confluent.Kafka;
 //#endif
 namespace CMAService.API
 {
@@ -128,8 +128,15 @@ namespace CMAService.API
             }).AddPolicyHandler(httpRetryPolicy);
 
             //#endif
+            //#if(AddKafka)
+            var producerConfig = new ProducerConfig();
+            var consumerConfig = new ConsumerConfig();
+            Configuration.Bind("producer", producerConfig);
+            Configuration.Bind("consumer", consumerConfig);
 
-           
+            services.AddSingleton<ProducerConfig>(producerConfig);
+            services.AddSingleton<ConsumerConfig>(consumerConfig);
+            //#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

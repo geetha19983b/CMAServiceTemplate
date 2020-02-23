@@ -8,7 +8,7 @@ Dotnet new -u “give full path of the parent folder where the template folder i
 
 
 dotnet new cmawebapi --ProjectName ClaimDService --AddPromethus true --AddSerilog false --AddTestProject false --AddPolly true --AddHealthCheck true --AddSwagger true
---AddSql true --AddMongo false
+--AddSql true --AddMongo false --AddKafka true
 to package
 create a folder eg Templates in that put webapi folder with the contents and keep nuspec file and nuget package in the template folder
 Add a folder WebAPI and copy all the contents of the web template project
@@ -22,5 +22,30 @@ To unistall the template
 dotnet new -u IMPWEB.Templates
 
 
-AddSql
-AddMongo
+For running Zookeeper server, I will open up a command prompt. 
+And navigate to “C:\zookeeper-3.4.10\bin”. And type command “zkserver” and hit enter. As a result the Zookeeper server will be started.
+
+After Zookeeper server is started, I will open up another command prompt window. And navigate to “c:\kafka\kafka_2.11-1.0.0\”. 
+	And type command “.\bin\windows\kafka-server-start.bat ./config/server.properties”. As a result Kafka will be started.
+
+kafka-console-consumer.bat – localhosootstrap-servert:2181 –topic timemanagementBooking
+
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic timemanagementBooking --from-beginning
+
+C:\Kafka\kafka_2.11-2.4.0\bin\windows>kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --group csh2_consumer
+
+
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --delete --group csh4_consumer
+
+--list the groups
+C:\Kafka\kafka_2.11-2.4.0\bin\windows>kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
+
+post to api/order
+
+{
+
+"id":1236,
+"productname":"Rithvik joker 73",
+"quantity":3
+
+}
