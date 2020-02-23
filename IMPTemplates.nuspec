@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>IMPWEB.Templates</id>
+    <version>1.0.1</version>
+    <description>
+      Creates a web api project with all the layers for .net core 2.2.
+    </description>
+    <authors>Infosys</authors>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+    <title>MvvmCross templates - native, single page Xamarin app (iOS, Android, UWP, WPF)</title>
+    <summary>This package is used by dotnet new to create web api project with all the layers</summary>
+    <projectUrl>https://github.com/jimbobbennett/MvvmCross-Templates</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/jimbobbennett/MvvmCross-Templates/master/MvvmCrossFormsMultiplePages/.template.config/project-icon.png</iconUrl>
+    <tags>impwebapi</tags>
+  </metadata>
+  <files>
+    <file src=".\WebAPI\**" target="content" exclude=".\**\packages\**;**\bin\**;**\obj\**;**\.vs\**;**\*.user;"/>
+</files>
+</package>
