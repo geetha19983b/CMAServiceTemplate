@@ -5,7 +5,9 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
+//#if(AddRedis)
+using Microsoft.Extensions.Caching.Distributed;
+//#endif
 namespace CMAService.API.Controllers
 {
     [ApiController]
@@ -19,10 +21,19 @@ namespace CMAService.API.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+         #if (AddRedis)
+        private readonly IDistributedCache _distributedCache;
+            #endif
+        public WeatherForecastController(ILogger<WeatherForecastController> logger
+        #if (AddRedis)
+            , IDistributedCache distributedCache 
+        #endif
+            )
         {
             _logger = logger;
+#if (AddRedis)
+            _distributedCache = distributedCache;
+#endif
         }
         /// <summary>
         /// Get all values
@@ -51,6 +62,29 @@ namespace CMAService.API.Controllers
             })
             .ToArray();
         }
+#if (AddRedis)
+        /// <summary>
+        /// Redis Cache Testing
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetTime")]
+        public string GetTimeInfo()
+        {
+            var cacheKey = "TheTime";
+            var existingTime = _distributedCache.GetString(cacheKey);
+            if (!string.IsNullOrEmpty(existingTime))
+            {
+                return "Fetched from cache : " + existingTime;
+            }
+            else
+            {
+                existingTime = DateTime.UtcNow.ToString();
+                _distributedCache.SetString(cacheKey, existingTime);
+                return "Added to cache : " + existingTime;
+            }
+        }
+#endif
         /// <summary>
         /// Polly retry test end point
         /// </summary>

@@ -8,6 +8,9 @@
     <DocumentationFile>CMAService.API.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <!--#if(AddRedis)-->
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+    <!--#endif-->
     <!--#if(AddSwagger)-->
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
@@ -28,6 +31,10 @@
     <!--#if (AddKafka)-->
     <PackageReference Include="Confluent.Kafka" Version="1.3.0" />
     <!--#endif-->
+   <!--#if (AddJager)-->
+  <PackageReference Include="Jaeger" Version="0.3.6" />
+    <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.5.0" />
+ <!--#endif-->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CMAService.Business\CMAService.Business.csproj" />

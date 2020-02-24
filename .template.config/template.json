@@ -20,6 +20,11 @@
       "datatype": "bool",
       "defaultValue": "false"
     },
+    "AddJager": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
     "AddSerilog": {
       "type": "parameter",
       "datatype": "bool",
@@ -56,6 +61,11 @@
       "defaultValue": "false"
     },
     "AddKafka": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "AddRedis": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"

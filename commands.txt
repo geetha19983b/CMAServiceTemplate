@@ -8,7 +8,7 @@ Dotnet new -u “give full path of the parent folder where the template folder i
 
 
 dotnet new cmawebapi --ProjectName ClaimDService --AddPromethus true --AddSerilog false --AddTestProject false --AddPolly true --AddHealthCheck true --AddSwagger true
---AddSql true --AddMongo false --AddKafka true
+--AddSql true --AddMongo false --AddKafka true --AddJager true --AddRedis true
 to package
 create a folder eg Templates in that put webapi folder with the contents and keep nuspec file and nuget package in the template folder
 Add a folder WebAPI and copy all the contents of the web template project
@@ -27,7 +27,7 @@ And navigate to “C:\zookeeper-3.4.10\bin”. And type command “zkserver” a
 
 After Zookeeper server is started, I will open up another command prompt window. And navigate to “c:\kafka\kafka_2.11-1.0.0\”. 
 	And type command “.\bin\windows\kafka-server-start.bat ./config/server.properties”. As a result Kafka will be started.
-
+kafka-console-producer.bat –broker-list localhost:9092 –topic timemanagement_booking
 kafka-console-consumer.bat – localhosootstrap-servert:2181 –topic timemanagementBooking
 
 kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic timemanagementBooking --from-beginning
@@ -49,3 +49,41 @@ post to api/order
 "quantity":3
 
 }
+
+cd C:\Program Files\MongoDB\Server\4.2\bin
+
+D:\Program Files\MongoDB\Server\4.2\data
+
+mongod --dbpath "D:\Program Files\MongoDB\Server\4.2\data"
+
+CHNMCT142291L\SQLEXPRESS
+
+create table Authors
+(
+Id UNIQUEIDENTIFIER  not null primary key,
+FirstName varchar(50) not null,
+LastName varchar(50) not null
+)
+
+post to http://localhost:44358/api/author
+
+{
+	"firstname":"Kurt Mongo",
+	"lastname":"Vonnegut"
+}
+#to start kafka
+goto folder D:\ProgramFiles\Kafka\kafka_2.12
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+make sure server.properties in kafka listeners=PLAINTEXT://127.0.0.1:9092
+
+
+##redis 
+https://github.com/microsoftarchive/redis/releases
+goto D:\ProgramFiles\Redis-x64-3.2.100
+redis-server
+in another prompt redis-cli
+SET <key> <value>
+GET <key>
