@@ -8,6 +8,10 @@
     <DocumentationFile>CMAService.API.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <!--#if(AddCouch)-->
+    <PackageReference Include="CouchbaseNetClient" Version="2.7.16" />
+    <PackageReference Include="CouchDB.NET" Version="1.2.0" />
+    <!--#endif-->
     <!--#if(AddRedis)-->
     <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
     <!--#endif-->

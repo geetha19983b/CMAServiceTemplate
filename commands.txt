@@ -87,3 +87,15 @@ redis-server
 in another prompt redis-cli
 SET <key> <value>
 GET <key>
+
+##couchdb
+https://dotnetcodr.com/2017/05/15/introduction-to-couchdb-with-net-part-1-foundations-and-setup/
+
+#couch db ui
+http://localhost:5984/_utils
+
+##to get a uuid 
+http://127.0.0.1:5984/_uuids
+
+
+https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/yaml/petstore.yaml

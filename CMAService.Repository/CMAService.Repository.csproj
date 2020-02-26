@@ -19,6 +19,11 @@
     <!--#if(AddMongo)-->
     <PackageReference Include="MongoDB.Driver" Version="2.10.2" />
     <!--#endif-->
+    <!--#if(AddCouch)-->
+
+    <PackageReference Include="CouchbaseNetClient" Version="2.7.16" />
+    <PackageReference Include="CouchDB.NET" Version="1.2.0" />
+    <!--#endif-->
 
   </ItemGroup>
 

@@ -5,10 +5,17 @@ using System.Text;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 //#endif
-
+//if(AddCouch)
+using CouchDB.Driver;
+using CouchDB.Driver.Types;
+//#endif
 namespace CMAService.Repository
 {
+     
     public class Author
+//#if (AddCouch)
+        : CouchDocument
+//#endif
     {
         //#if (AddMongo)
         [BsonId]

@@ -21,7 +21,7 @@ namespace CMAService.API.Controllers
                 throw new ArgumentNullException(nameof(businessobj));
         }
 
-         #if (AddSql || AddMongo)
+         #if (AddSql || AddMongo || AddCouch)
 
         [HttpGet()]
 

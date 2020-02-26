@@ -49,6 +49,9 @@ using Confluent.Kafka;
 using OpenTracing;
 using OpenTracing.Util;
 //#endif
+//#if(AddCouch)
+using CouchDB.Driver;
+//#endif
 namespace CMAService.API
 {
     public class Startup
@@ -169,10 +172,18 @@ namespace CMAService.API
                 option.InstanceName = Configuration["RedisConnection:instancename"];
             });
             //#endif
+
+            //#if(AddCouch)
+            var constring = Configuration["Couchbase:Server"];
+
+            services.AddSingleton<CouchClient>(new CouchClient(constring));
+            //#endif
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            Microsoft.Extensions.Hosting.IHostApplicationLifetime applicationLifetime)
         {
             if (env.IsDevelopment())
             {
@@ -217,6 +228,8 @@ namespace CMAService.API
                 });
                 //#endif
             });
+
+          
         }
         //#if (AddHealthCheck)
         private static Task WriteResponse(HttpContext context, HealthReport result)
