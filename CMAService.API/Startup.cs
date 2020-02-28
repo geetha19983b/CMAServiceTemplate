@@ -95,11 +95,11 @@ namespace CMAService.API
 
             services.AddScoped<IBusinessAccess, BusinessAccess>();
             //#if (!AddSql && !AddMongo)
-            services.AddScoped<IDataAccess, DataAccess>();
+             services.AddScoped<IDataAccess, DataAccess>();
             //#endif
-
+           // services.AddScoped<IDataAccess, CouchDataAccess>();
             //#if(AddSql)
-            services.AddScoped<IDataAccess, SqlDataAccess>();
+            //services.AddScoped<IDataAccess, SqlDataAccess>();
 
             services.AddDbContext<AuthorContext>(options =>
             {
@@ -117,7 +117,7 @@ namespace CMAService.API
             services.AddSingleton<IMongoDbSettings>(sp =>
                 sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
-            services.AddScoped<IDataAccess, MongoDataAccess>();
+            //services.AddScoped<IDataAccess, MongoDataAccess>();
 
 
             //#endif
@@ -149,11 +149,11 @@ namespace CMAService.API
             services.AddSingleton<ITracer>(serviceProvider =>
             {
                 var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerServiceName, "CMAserviceName");
-                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerSamplerType, "const");
-                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerReporterLogSpans, "1");
-                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerSamplerParam, "1");
-                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerEndpoint, "http://jaeger-collector-observability.apps.admcoepaas.local/api/traces");
+                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerServiceName, Configuration["JagerConnection:servicename"]);
+                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerSamplerType, Configuration["JagerConnection:sampletype"]);
+                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerReporterLogSpans, Configuration["JagerConnection:reportlogspan"]);
+                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerSamplerParam, Configuration["JagerConnection:samplerparam"]);
+                Environment.SetEnvironmentVariable(Jaeger.Configuration.JaegerEndpoint, Configuration["JagerConnection:endpoint"]);
                 // This will log to a default localhost installation of Jaeger.
                 var tracer = Jaeger.Configuration.FromEnv(loggerFactory).GetTracer();
 

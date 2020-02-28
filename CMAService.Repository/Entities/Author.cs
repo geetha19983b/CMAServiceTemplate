@@ -14,18 +14,34 @@ namespace CMAService.Repository
      
     public class Author
 //#if (AddCouch)
-        : CouchDocument
+        //: CouchDocument
 //#endif
     {
         //#if (AddMongo)
-        [BsonId]
-        [BsonRepresentation(BsonType.String)]
-        //#endif
+        //[BsonId]
+        //[BsonRepresentation(BsonType.String)]
+        ////#endif
+        // public Guid Id { get; set; }
+        //public override string Id { get; set; }
         public Guid Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
     }
+    //public class Author: CouchDocument
+   
+    //{
+    //    //#if (AddMongo)
+    //    //[BsonId]
+    //    //[BsonRepresentation(BsonType.String)]
+    //    //#endif
+    //    // public Guid Id { get; set; }
+    //    public override string Id { get; set; }
+    //    public string Id { get; set; }
+    //    public string FirstName { get; set; }
+
+    //    public string LastName { get; set; }
+
+    //}
 }

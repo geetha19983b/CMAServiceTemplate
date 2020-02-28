@@ -1,47 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MongoDB.Driver;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
+//using System.Threading.Tasks;
+//using MongoDB.Driver;
 
-namespace CMAService.Repository
-{
-    public class MongoDataAccess : IDataAccess
-    {
-        private readonly IMongoCollection<Author> _authors;
+//namespace CMAService.Repository
+//{
+//    public class MongoDataAccess : IDataAccess
+//    {
+//        private readonly IMongoCollection<Author> _authors;
 
-        public MongoDataAccess(IMongoDbSettings settings)
-        {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+//        public MongoDataAccess(IMongoDbSettings settings)
+//        {
+//            var client = new MongoClient(settings.ConnectionString);
+//            var database = client.GetDatabase(settings.DatabaseName);
 
-            _authors = database.GetCollection<Author>(settings.CollectionName);
-        }
-        public void AddAuthor(Author author)
-        {
-            _authors.InsertOne(author);
-        }
+//            _authors = database.GetCollection<Author>(settings.CollectionName);
+//        }
+//        public async Task AddAuthor(Author author)
+//        {
+//            await _authors.InsertOneAsync(author);
+//        }
 
-        public void DeleteAuthor(Author author)
-        {
-            _authors.DeleteOne(auth => auth.Id == author.Id);
-        }
+//        public async void DeleteAuthor(Author author)
+//        {
+//           await _authors.DeleteOneAsync(auth => auth.Id == author.Id);
+//        }
 
-        public Author GetAuthor(Guid authorId)
-        {
-            return _authors.Find<Author>(author => author.Id == authorId).FirstOrDefault();
-        }
+//        public async Task<Author> GetAuthor(Guid authorId)
+//        {
+//            return await _authors.Find<Author>(author => author.Id == authorId).FirstOrDefaultAsync();
+//        }
 
-        public IEnumerable<Author> GetAuthors()
-        {
-            return _authors.Find<Author>(author => true).ToList();
-        }
-
-
+//        public async Task<IEnumerable<Author>> GetAuthors()
+//        {
+//            return await _authors.Find<Author>(author => true).ToListAsync();
+//        }
 
 
-        public void UpdateAuthor(Guid authorId, Author author)
-        {
-            _authors.ReplaceOne(auth => auth.Id == authorId, author);
-        }
-    }
-}
+
+
+//        public async void UpdateAuthor(Guid authorId, Author author)
+//        {
+//            await _authors.ReplaceOneAsync(auth => auth.Id == authorId, author);
+//        }
+//    }
+//}

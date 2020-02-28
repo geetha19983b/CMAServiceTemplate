@@ -60,7 +60,8 @@ CHNMCT142291L\SQLEXPRESS
 
 create table Authors
 (
-Id UNIQUEIDENTIFIER  not null primary key,
+//Id UNIQUEIDENTIFIER  not null primary key,
+Id varchar(150) not null primary key,
 FirstName varchar(50) not null,
 LastName varchar(50) not null
 )
@@ -99,3 +100,36 @@ http://127.0.0.1:5984/_uuids
 
 
 https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/yaml/petstore.yaml
+
+
+
+{
+	"projectName":"cmashipmongo",
+	"netcoreversion":"netcoreapp3.0",
+	"swaggerPath":"https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/yaml/petstore.yaml",
+	"databases":["sqldb"],
+	"messaging":["kafka"],
+	"addsteeltoe":true,
+	"addpolly":true,
+	"addtestProject":false,
+	"addserilog":true,
+	"addredis":true
+
+}
+
+
+{
+	"projectName":"shipdocmongo",
+	"netcoreversion":"netcoreapp3.0",
+	"swaggerPath":"D:\\Test\\CMAPOC\\Swagger_Implementation_ServiceSWAGGER_ShippingDocument.yaml",
+	"databases":["mongodb","couchdb"],
+	"messaging":["kafka"],
+	"addsteeltoe":true,
+	"addpolly":true,
+	"addtestProject":false,
+	"addserilog":true,
+	"addredis":true,
+	"addPromethus":true,
+	"addJager":true
+
+}

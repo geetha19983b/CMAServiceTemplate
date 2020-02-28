@@ -1,6 +1,7 @@
 ﻿using CMAService.Repository;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CMAService.Business
 {
@@ -14,39 +15,92 @@ namespace CMAService.Business
                 throw new ArgumentNullException(nameof(dataAccessObj));
         }
 
-        #if(AddSql || AddMongo)
-        public void AddAuthor(Author author)
+        //#if(AddSql || AddMongo)
+        public async Task AddAuthor(Author author)
         {
-            _dataAccessObj.AddAuthor(author);
+            await _dataAccessObj.AddAuthor(author);
 
 
         }
-        #endif
-        #if(AddSql || AddMongo)
-        public void DeleteAuthor(Author author)
+        
+        
+        public async Task DeleteAuthor(Author author)
         {
-            _dataAccessObj.DeleteAuthor(author);
+            await _dataAccessObj.DeleteAuthor(author);
         }
-        #endif
-        #if(AddSql || AddMongo)
-        public Author GetAuthor(Guid authorId)
+       
+        public async Task<Author> GetAuthor(Guid authorId)
         {
-            return _dataAccessObj.GetAuthor(authorId);
+            return await _dataAccessObj.GetAuthor(authorId);
         }
-        #endif
-        #if(AddSql || AddMongo)
-        public IEnumerable<Author> GetAuthors()
+       
+        public async Task<IEnumerable<Author>> GetAuthors()
         {
-            return _dataAccessObj.GetAuthors();
+            return await _dataAccessObj.GetAuthors();
         }
-        #endif
-        #if(AddSql || AddMongo)
-        public void UpdateAuthor(Guid authorId, Author author)
+       
+        public async Task UpdateAuthor(Guid authorId, Author author)
         {
-            _dataAccessObj.UpdateAuthor(authorId, author);
+            await _dataAccessObj.UpdateAuthor(authorId, author);
         }
-        #endif
+        // #endif
+        //mongodb starts
+        public async Task AddBook(Book book)
+        {
+            await _dataAccessObj.AddBook(book);
+        }
 
+        public async Task DeleteBook(Book book)
+        {
+            await _dataAccessObj.DeleteBook(book);
+        }
+
+        public async Task<Book> GetBook(Guid bookId)
+        {
+            return await _dataAccessObj.GetBook(bookId);
+        }
+
+        public async Task<IEnumerable<Book>> GetBooks()
+        {
+            return await _dataAccessObj.GetBooks();
+        }
+
+        public async Task UpdateBook(Guid bookId, Book book)
+        {
+            await _dataAccessObj.UpdateBook(bookId, book);
+        }
+        //mongodb ends
+
+        //couch starts
+        public async Task AddPublisher(Publisher publisher)
+        {
+
+            await _dataAccessObj.AddPublisher(publisher);
+        }
+
+        public async Task DeletePublisher(Publisher publisher)
+        {
+
+            await _dataAccessObj.DeletePublisher(publisher);
+        }
+
+        public async Task<Publisher> GetPublisher(string publisherId)
+        {
+           return await _dataAccessObj.GetPublisher(publisherId);
+        }
+
+        public async Task<IEnumerable<Publisher>> GetPublishers()
+        {
+
+            return await _dataAccessObj.GetPublishers();
+        }
+
+        public async Task UpdatePublisher(string publisherId, Publisher publisher)
+        {
+           await  _dataAccessObj.UpdatePublisher(publisherId, publisher);
+        }
+
+        //couch ends
     }
 
 }
